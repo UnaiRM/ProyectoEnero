@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.15.4/js/all.js");
+header{
+    background-color: rgb(158, 237, 243);
+    display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    max-height: 150px;
+}
+a{
+    text-decoration: none;
+}
+
+.leftheader{
+    display: flex;
+    margin-right: auto;
+    padding: 16px;
+}
+
+.leftheader h1{
+    margin-left: 28px;
+}
+
+a.linksh{
+    color: rgb(41, 41, 41);
+    transition: background-color .5s;
+    border-radius: 12px;
+    padding: 12px;
+    margin-right: 32px;
+
+}
+
+.linksh h4{
+
+}
+
+a.linksh:hover{
+    background-color: rgb(58, 214, 241);
+}
+
+.rightheader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+
+.rightheader input{
+    max-height: 24px;
+}
+
+input{
+    border: none;
+}
+button{
+    padding: 4px;
+    border: none;
+    background-color: rgb(162, 164, 167)
+}
+
+
+
+footer{
+    background-color: thistle;
+    position:relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100px;
+}
+.footer-content{
+    padding-top: 32px;
+    display: flex;
+}
+#copy{
+    position: absolute;
+    bottom: 0;
+}
+.social-menu ul {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.social-menu ul li {
+    list-style: none;
+    margin: 0 10px;
+}
+.social-menu ul li .fa-2x {
+    color: #000000;
+    transform: translateY(12px);
+    font-size: 25px;
+    line-height: 50px;
+    transition: .5s;
+}
+.social-menu ul li .fa-2x:hover {
+    color: #ffffff;
+}
+.social-menu ul li a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    text-align: center;
+    transition: 0.5s;
+    transform: translate(0,0px);
+    box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.5);
+}
+.social-menu ul li a:hover {
+    transform: rotate(0deg) skew(0deg) translate(0, -10px);
+}
+.social-menu ul li:nth-child(1) a:hover {
+    background-color: #3b5999;
+}
+.social-menu ul li:nth-child(2) a:hover {
+    background-color: #55acee;
+}
+.social-menu ul li:nth-child(3) a:hover {
+    background-color: #e4405f;
+}

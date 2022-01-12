@@ -1,0 +1,15 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(241, 241, 241);
+}
+
+.contact-content{
+    margin: auto auto auto 32px;
+}
+
+iframe{
+    display: flex;
+    margin: auto auto 32px auto;
+}
