@@ -1,0 +1,86 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(241, 241, 241);
+}
+.grid-container{
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: 240px 680px;
+    grid-template-rows: 80px 240px 120px 120px 120px;
+    grid-template-areas:"a1 a1"
+ 						"a2 a3"
+                        "a7 a4"
+ 						"a8 a5"
+ 						"a9 a6"
+    ;
+    margin: 64px;
+    
+}
+
+.img-grid{
+    display: grid;
+    border-radius: 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+    background-image: url(Img/diversidad-del-trabajo-en-equipo-20471736.jpg);
+	grid-area: a2;
+}
+.title-grid{
+    font-family: 'Press Start 2P', cursive;
+    display: grid;
+    grid-area: a1;
+}
+.resum-grid{
+    display: grid;
+    grid-area: a3;
+    line-height: 30px;
+}
+.img-xavi{
+    
+    display: grid;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+    background-image: url(Img/xavi.jpg);
+	grid-area: a7;
+}
+.xavi-grid{
+    
+    display: grid;
+    grid-area: a4;
+    margin-left: 24px;
+}
+.img-unai{
+    
+    display: grid;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+    background-image: url(Img/unai.jpg);
+	grid-area: a8;
+}
+.unai-grid{
+    
+    display: grid;
+    grid-area: a5;
+    margin-left: 24px;
+}
+.img-samu{
+    
+    display: grid;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+    background-image: url(Img/Cristiano_Ronaldo.jpeg);
+	grid-area: a9;
+}
+
+.samu-grid{
+    
+    display: grid;
+    grid-area: a6;
+    margin-left: 24px;
+}
