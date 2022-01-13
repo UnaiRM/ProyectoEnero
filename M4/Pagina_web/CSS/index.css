@@ -65,8 +65,13 @@ body{
 }
 .text-img p{
     max-width: 700px;
+    justify-content: flex-start;
 }
 
 #last-div{
     margin-bottom: 64px;
+}
+
+p a{
+    font-style: italic;
 }
