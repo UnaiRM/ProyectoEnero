@@ -24,19 +24,16 @@ a{
 
 a.linksh{
     color: rgb(41, 41, 41);
-    transition: background-color .5s;
+    transition: all .3s;
     border-radius: 12px;
     padding: 12px;
     margin-right: 32px;
 
 }
 
-.linksh h4{
-
-}
-
 a.linksh:hover{
     background-color: rgb(58, 214, 241);
+    color: white;
 }
 
 .rightheader{
@@ -48,17 +45,25 @@ a.linksh:hover{
 
 .rightheader input{
     max-height: 24px;
+    border-radius: 20px;
 }
 
 input{
     border: none;
 }
-button{
-    padding: 4px;
-    border: none;
-    background-color: rgb(162, 164, 167)
+input:focus{
+    border: #55acee;
 }
 
+
+
+.fa-search{
+    position: relative;
+    left: -22px;
+}
+.fa-search:hover{
+    cursor: pointer;
+}
 
 
 footer{
