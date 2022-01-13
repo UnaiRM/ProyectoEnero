@@ -18,7 +18,7 @@ desc USER;
 create table if not exists BDDPROYECTOENERO.CHARACTER(
 id_character int auto_increment primary key,
 name varchar(45) not null unique,
-description varchar(45) not null,
+description varchar(200) not null,
 user_create varchar(45) null,
 user_modify varchar(45) null,
 create_date date null,
@@ -26,8 +26,8 @@ modify_date date null);
 
 create table if not exists ADVENTURE(
 id_adventure int auto_increment primary key,
-name varchar(45) not null,
-description varchar(45) not null,
+name varchar(200) not null,
+description varchar(200) not null,
 user_create varchar(45) null,
 user_modify varchar(45) null,
 create_date date null,
@@ -37,7 +37,7 @@ create table if not exists STEP(
 id_step int auto_increment,
 id_adventure int not null,
 final_step bit(1) null,
-description varchar(45) not null,
+description varchar(200) not null,
 user_create varchar(45) null,
 user_modify varchar(45) null,
 create_date date null,
@@ -52,9 +52,9 @@ primary key(id_step, id_adventure)
 create table if not exists BDDPROYECTOENERO.OPTION(
 id_option int auto_increment primary key,
 id_step int not null,
-answer varchar(45) not null,
+answer varchar(200) not null,
 id_next_step int not null,
-description varchar(45) not null,
+description varchar(200) not null,
 id_last_step int not null,
 user_create varchar(45) null,
 user_modify varchar(45) null,
