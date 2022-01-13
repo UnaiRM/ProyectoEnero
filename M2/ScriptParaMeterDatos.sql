@@ -10,9 +10,9 @@ values ('Goku', 'Un super sayan del planeta Vegeta, muy mamado', current_user(),
 
 insert into ADVENTURE(name, description, user_create, create_date)
 values ('Freezer Vuelve a atacar(version corta de la pelea)','Freezer decide volver a la vida y atacar de nuevo el planeta tierra, si, otra vez el mismo planeta...', current_user(), curdate()),
-		('Los 3 caminos del bosque maldito', 'Apareces en medio de un gran bosque maldito, deberas elegir sabiamente para no morir', current_user(), curdate()),
         ('A salvar a la princesa','La princesa parece estar en apuros, corre y ve a salvarle', current_user(), curdate()),
-        ('Pelea epica contra Saitama', 'Estas dentro de una competicion de combates y te ha tocado contra Saitama, ideatelas para ganar', current_user(), curdate());
+        ('Pelea epica contra Saitama', 'Estas dentro de una competicion de combates y te ha tocado contra Saitama, ideatelas para ganar', current_user(), curdate()),
+		('Los 3 caminos del bosque maldito', 'Apareces en medio de un gran bosque maldito, deberas elegir sabiamente para no morir', current_user(), curdate());
 
 
 insert into STEP(id_adventure, final_step, description, user_create, create_date)
