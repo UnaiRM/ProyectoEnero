@@ -68,8 +68,11 @@ body{
     justify-content: flex-start;
 }
 
-#last-div{
-    margin-bottom: 64px;
+.general-part{
+    border: 3px solid rgb(158, 237, 243);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 32px;
 }
 
 p a{
