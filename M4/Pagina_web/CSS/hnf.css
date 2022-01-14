@@ -50,6 +50,7 @@ a.linksh:hover{
 
 input{
     border: none;
+    min-height: 32px;
 }
 input:focus{
     border: #55acee;
