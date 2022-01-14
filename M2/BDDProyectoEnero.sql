@@ -51,11 +51,10 @@ primary key(id_step, id_adventure)
 
 create table if not exists BDDPROYECTOENERO.OPTION(
 id_option int auto_increment primary key,
-id_step int not null,
-answer varchar(200) not null,
 id_next_step int not null,
-description varchar(200) not null,
 id_last_step int not null,
+description varchar(200) not null,
+answer varchar(200) not null,
 user_create varchar(45) null,
 user_modify varchar(45) null,
 create_date date null,
@@ -70,7 +69,6 @@ foreign key(id_last_step)
 
 create table if not exists GAME(
 id_game int auto_increment primary key,
-date date not null,
 id_character int not null,
 id_user int not null,
 id_adventure int not null,
@@ -78,6 +76,7 @@ user_create varchar(45) null,
 user_modify varchar(45) null,
 create_date date null,
 modify_date date null,
+date date not null,
 constraint FK_GAME_CHARACTER
 foreign key(id_character)
 	references BDDPROYECTOENERO.CHARACTER(id_character),

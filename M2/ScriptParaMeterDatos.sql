@@ -44,8 +44,7 @@ values  (1,0, 'Al parecer freezer es un resentido y vuelve a la vida para destru
         (3,1, 'Al parecer has logrado convertirte en supersayan 3, y logras salir victorioso, muchas felicidades',current_user(), curdate()),
         (3,1, 'Freezer te dice que te va a dejar ganar, y tu te lo crees, acabas reciviendo una gran paliza y una leccion, no confies en los malos de la serie...', current_user(), curdate());
      
-select * from BDDPROYECTOENERO.OPTION;
-
+select*from BDDPROYECTOENERO.OPTION;
 
 insert into BDDPROYECTOENERO.OPTION(id_next_step, id_last_step,description, answer, user_create, create_date)
 values  (2,1,'Intentar ser amable para que se vaya sin pelear', 'Le dices amablemente si se puede ir, que no va a ganar nada destruyendo la tierra',current_user(),curdate()),
