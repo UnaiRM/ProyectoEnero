@@ -70,6 +70,7 @@ body{
 
 .general-part{
     border: 3px solid rgb(158, 237, 243);
+    background-color:rgb(192 251 255);
     border-radius: 6px;
     padding: 12px;
     margin-bottom: 32px;

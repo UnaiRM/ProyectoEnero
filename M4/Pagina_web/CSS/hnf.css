@@ -36,6 +36,12 @@ a.linksh:hover{
     color: white;
 }
 
+.actual-page{
+    background-color: rgb(58, 214, 241);
+    color: white !important;
+    font-weight: bold;
+}
+
 .rightheader{
     display: flex;
     justify-content: space-between;
@@ -68,7 +74,7 @@ input:focus{
 
 
 footer{
-    background-color: thistle;
+    background-color: rgb(221, 221, 221);
     position:relative;
     bottom: 0;
     left: 0;
