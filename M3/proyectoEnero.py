@@ -28,3 +28,16 @@ conn.commit()
 
 print(cur.rowcount, "record inserted")
 conn.close()
+
+nombreusuario = False
+while nombreusuario == False:
+    usuario = input("Escribe tu nombre de usuario: "))
+    if len(usuario) < 6:
+        print("El nom de usuari ha de contenir almenys 6 caràcters")
+    if len(usuario) > 12:
+        print("El nom de usuari no pot contenir més de 12 caràcters")
+    if usuario.isalnum() == False:
+        print("El nom d'usuari pot contenir només lletres i números")
+    if usuario.isalnum() == True and len(usuario)>=6 and len(usuario)<=12:
+        print("Tu nombre de usuario es correcto")
+        nombreusuario = True
