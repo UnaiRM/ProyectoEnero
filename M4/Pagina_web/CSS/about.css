@@ -25,7 +25,7 @@ body{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
-    background-image: url(Img/diversidad-del-trabajo-en-equipo-20471736.jpg);
+    background-image: url(../Img/diversidad-del-trabajo-en-equipo-20471736.jpg);
 	grid-area: a2;
 }
 .title-grid{
@@ -44,7 +44,7 @@ body{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
-    background-image: url(Img/xavi.jpg);
+    background-image: url(../Img/xavi.jpg);
 	grid-area: a7;
 }
 .xavi-grid{
@@ -59,7 +59,7 @@ body{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
-    background-image: url(Img/unai.jpg);
+    background-image: url(../Img/unai.jpg);
 	grid-area: a8;
 }
 .unai-grid{
@@ -74,7 +74,7 @@ body{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
-    background-image: url(Img/Cristiano_Ronaldo.jpeg);
+    background-image: url(../Img/Cristiano_Ronaldo.jpeg);
 	grid-area: a9;
 }
 
