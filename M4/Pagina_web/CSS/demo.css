@@ -10,8 +10,8 @@ body{
 
 .full-pg{
     max-width: 1300px;
-    border: 1px solid red;
     margin: auto;
+    margin-top: 32px;
 }
 .title-demo{
     font-size: 64px;
