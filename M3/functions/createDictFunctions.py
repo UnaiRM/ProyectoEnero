@@ -1,6 +1,6 @@
 import pymysql
 #ESTABLECE CONEXION
-conn = pymysql.connect(host='52.178.107.50', user='xavi', password='12345678', db='BDDPROYECTOENERO')
+conn = pymysql.connect(host='localhost', user='Unai', password='admin123', db='BDDPROYECTOENERO')
 
 #Diccionario Usuarios
 def crearListaUsuarios():
@@ -16,7 +16,6 @@ def crearListaUsuarios():
             infoUsuario.append(item)
         users[id] = infoUsuario[1:]
     return users
-print(crearListaUsuarios())
 
 
 #Diccionario personajes
@@ -34,9 +33,6 @@ def crearListaPersonajes():
         characters[id] = infoCharacter[1:]
 
     return characters
-print(crearListaPersonajes())
-
-
 
 #Diccionario Aventuras
 def crearListaAventuras():
@@ -54,7 +50,6 @@ def crearListaAventuras():
 
     return adventures
 
-print(crearListaAventuras())
 
 
 
@@ -74,8 +69,6 @@ def crearListaSteps():
 
     return steps
 
-print(crearListaSteps())
-
 
 
 #Diccionario Options
@@ -94,7 +87,15 @@ def crearListaOptions():
 
     return options
 
-print(crearListaOptions())
 
+def get_answers_bystep_adventure(id_adventure):
+    idAnswers_ByStep_Adventure = {}
+    pasos = crearListaSteps()
+    for step in range(1,len(pasos)+1):
+        paso = pasos[step]
+        if paso[0] == id_adventure:
+            idAnswers_ByStep_Adventure[len(idAnswers_ByStep_Adventure)+1] = paso
+    return idAnswers_ByStep_Adventure
 
+print(get_answers_bystep_adventure(1))
 
