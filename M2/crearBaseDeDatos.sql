@@ -68,8 +68,8 @@ date datetime);
 create table if not exists BDDPROYECTOENERO.HISTORY(
 id_history int,
 id_game int,
-id_option int,
 id_step int not null,
+id_option int,
 user_create varchar(45),
 user_modify varchar(45),
 create_date datetime,
