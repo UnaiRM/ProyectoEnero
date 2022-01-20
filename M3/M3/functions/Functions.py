@@ -54,29 +54,6 @@ def DictAdventures():
 
     return adventures
 
-    print(crearListaAventuras())
-
-
-
-#Diccionario Steps
-def DictSteps():
-    cur = conn.cursor()
-    query = 'select * from STEP'
-    cur.execute(query)
-    rows = cur.fetchall()
-
-    steps = {}
-    for id in range(1,len(rows)+1):
-        infoStep = []
-        for item in rows[id-1]:
-            infoStep.append(item)
-        steps[id] = infoStep[1:]
-
-    return steps
-
-    print(crearListaSteps())
-
-
 
 #Diccionario Options
 def DictOptions():
@@ -98,7 +75,7 @@ def DictOptions():
 
 def InsertUser(user, password):
     cur = conn.cursor()
-    sql = f"insert into USER (user_name, password, user_create, create_date) values('{user}','{password}', 'current_user()', curdate())"
+    sql = f"insert into USER (user_name, password, user_create, create_date) values('{user}','{password}', 'current_user()', current_time())"
 
     cur.execute(sql)
     conn.commit()
@@ -108,7 +85,7 @@ def InsertUser(user, password):
 
 def insertCurrentGame(idCharacter,idUser,idAdventure):
     cur = conn.cursor()
-    sql = f"insert into GAME (id_character, id_user, id_adventure, user_create, create_date, date) values('{idCharacter}','{idUser}', '{idAdventure}',current_user(), curdate(), curdate())"
+    sql = f"insert into GAME (id_character, id_user, id_adventure, user_create, create_date, date) values('{idCharacter}','{idUser}', '{idAdventure}',current_user(), current_time(), current_time())"
     cur.execute(sql)
     conn.commit()
 
@@ -150,7 +127,7 @@ def get_characters():
     return characters
 
 #Diccionario Aventuras / get_adventures_with_chars()?
-def get_adventures_with_chars():
+def get_adventures_with_chars(id_character):
     cur = conn.cursor()
     query = 'select * from ADVENTURE'
     cur.execute(query)
@@ -169,7 +146,7 @@ def get_adventures_with_chars():
 
 
 #Diccionario Steps
-def crearListaSteps():
+def DictSteps():
     cur = conn.cursor()
     query = 'select * from STEP'
     cur.execute(query)
@@ -182,7 +159,7 @@ def crearListaSteps():
         steps[id] = infoStep
     return steps
 
-
+print(DictSteps())
 #Diccionario Steps
 def crearListaHistorial():
     cur = conn.cursor()
@@ -234,12 +211,13 @@ def crearListaGames():
 
 def get_id_bystep_adventure(id_adventure):
     idAnswers_ByStep_Adventure = {}
-    pasos = crearListaSteps()
+    pasos = DictSteps()
     for step in range(1,len(pasos)+1):
         paso = pasos[step]
         if paso[1] == id_adventure:
             idAnswers_ByStep_Adventure[len(idAnswers_ByStep_Adventure)+1] = paso
     return idAnswers_ByStep_Adventure
+print(get_id_bystep_adventure(1)[1][3])
 
 
 
@@ -262,8 +240,8 @@ def get_answers_bystep_adventure(id_adventure):
 def get_first_step_adventure(id_adventure):
     pasos = get_id_bystep_adventure(id_adventure)
     primerPaso = pasos[1]
-    return primerPaso
-
+    return primerPaso[3]
+print(get_first_step_adventure(1))
 
 def getChoices(id_relife):
     history = crearListaHistorial()
@@ -397,10 +375,12 @@ def gameTitle():
     print("             #    # #  ####    #    ####  #    # # #    #             ")
     print("**********************************************************************")
 
-def GetOpt(textOpts="",inputOptText="",rangeList=[],exceptions=[]):
+def GetOpt(textOpts,inputOptText="",rangeList=[],exceptions=[]):
     while True:
-        print(textOpts)
-        opc = (input(inputOptText))
+        print()
+        for texto in textOpts:
+            print(" ".rjust(31)+str(texto))
+        opc = input(inputOptText)
         if opc not in rangeList and opc not in exceptions:
             print("*"*5,"Invalid Option","*"*5)
             input("Press enter to continue")
@@ -417,3 +397,61 @@ def checkUserbdd(user,password):
                 return -1
         else:
             return 0
+def character_list():
+    characters = get_characters()
+    for character in characters:
+        print("{}) {}".format(character,characters[character][0]))
+
+
+def character_ID_list():
+    characters = get_characters()
+    listaID = []
+    for character in characters:
+        listaID.append(str(character))
+    return listaID
+
+
+def Dict_Char_Adv():
+    cur = conn.cursor()
+    query = 'select * from CHARACTER_ADVENTURE'
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    characterInAdventure = {}
+    for id in range(1,len(rows)+1):
+        infoCharInAdv = []
+        for item in rows[id-1]:
+            infoCharInAdv.append(item)
+        characterInAdventure[id] = infoCharInAdv
+    return characterInAdventure
+
+
+def adventuresForCharacter(id_character):
+    aventuras = DictAdventures()
+    aventurasParaCaracter = Dict_Char_Adv()
+    for item in range(1,len(aventurasParaCaracter)+1):
+        if id_character == aventurasParaCaracter[item][0]:
+            print('{}) {}'.format(aventurasParaCaracter[item][1],aventuras[aventurasParaCaracter[item][1]][0]))
+
+def adventuresIdForCharacter(id_character):
+    aventurasParaCaracter = Dict_Char_Adv()
+    listaAventuras = []
+    for item in range(1, len(aventurasParaCaracter) + 1):
+        if id_character == aventurasParaCaracter[item][0]:
+            listaAventuras.append(aventurasParaCaracter[item][1])
+    return listaAventuras
+
+print(adventuresIdForCharacter(1))
+
+def selectUserID(username):
+    usuarios = DictUsers()
+    for IDuser in range(1,len(usuarios)+1):
+        if username == usuarios[IDuser][0]:
+            id_user = IDuser
+    return id_user
+
+
+
+
+
+
