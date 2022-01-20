@@ -1,7 +1,7 @@
 use BDDPROYECTOENERO;
 
 insert into USER(user_name, password, user_create, create_date)
-values ('Unai','qwerty', current_user(), current_time()), ('Xavi','12345', current_user(), current_time()), ('Samu','123123', current_user(), current_time());
+values ('Unai123','Unai123!', current_user(), current_time()), ('Xavi123','Xavi123!', current_user(), current_time()), ('Samu123','Samu123!', current_user(), current_time());
 
 insert into BDDPROYECTOENERO.CHARACTER(name, description, user_create, create_date)
 values ('Goku', 'Un super sayan del planeta Vegeta, muy mamado', current_user(),current_time()),
@@ -13,7 +13,6 @@ values ('Freezer Vuelve a atacar(version corta de la pelea)','Freezer decide vol
         ('A salvar a la princesa','La princesa parece estar en apuros, corre y ve a salvarle', current_user(), current_time()),
         ('Pelea epica contra Saitama', 'Estas dentro de una competicion de combates y te ha tocado contra Saitama, ideatelas para ganar', current_user(), current_time()),
 		('Los 3 caminos del bosque maldito', 'Apareces en medio de un gran bosque maldito, deberas elegir sabiamente para no morir', current_user(), current_time());
-
 
 insert into STEP(id_adventure, final_step, description, user_create, create_date)
 values  (1,0, 'Al parecer freezer es un resentido y vuelve a la vida para destruir el planeta tierra!!! Que haras?', current_user(), current_time()),
@@ -44,10 +43,9 @@ values  (1,0, 'Al parecer freezer es un resentido y vuelve a la vida para destru
         (3,1, 'Al parecer has logrado convertirte en supersayan 3, y logras salir victorioso, muchas felicidades',current_user(), current_time()),
         (3,1, 'Freezer te dice que te va a dejar ganar, y tu te lo crees, acabas reciviendo una gran paliza y una leccion, no confies en los malos de la serie...', current_user(), current_time());
      
-select*from BDDPROYECTOENERO.OPTION;
-
 insert into BDDPROYECTOENERO.OPTION(id_next_step, id_last_step,description, answer, user_create, create_date)
 values  (2,1,'Intentar ser amable para que se vaya sin pelear', 'Le dices amablemente si se puede ir, que no va a ganar nada destruyendo la tierra',current_user(),current_time()),
+		(3,1,'Pelear contra el', 'Decides intentar pelear contra el, a ver si logras vencerle',current_user(),current_time()),
 		(4,3,'Convertirte en superSayan2', 'Asumes que con la fuerza de un supersayan2 podras vencer a freezer y te conviertes en uno', current_user(),current_time()),
         (5,3,'Llamar a tu amigo Saitama', 'Hoy no te apetece pelear, y decides llamar a Saitama',current_user(),current_time()),
         (7,6,'Pausar la alarma para dormir un poco mas', 'Por un rato que duerma mas no pasara nada...',current_user(),current_time()),
@@ -69,5 +67,13 @@ values  (2,1,'Intentar ser amable para que se vaya sin pelear', 'Le dices amable
         (24,22,'Irte del concurso','Tienes tanto miedo que sales corriendo',current_user(),current_time()),
         (25,22,'Pedir un cambio','Piensas un poco y decides pedir un cambio de oponente',current_user(),current_time()),
         (26,25,'Convertirte en superSayan3','Intentas convertirte en supersayan 3 para vencer a Freezer',current_user(),current_time()),
-        (27,25,'Pedirle a Freezer que se deje ganar','Piensas que convencer a Freezer es la mejor manera de salir vivo de alli',current_user(),current_time())
+        (27,25,'Pedirle a Freezer que se deje ganar','Piensas que convencer a Freezer es la mejor manera de salir vivo de alli',current_user(),current_time());
 
+insert into GAME(id_character, id_user, id_adventure, user_create, create_date, date)
+values(1,1,1,current_user(),current_time(),current_time()),(2,1,2,current_user(),current_time(),current_time());
+
+insert into BDDPROYECTOENERO.HISTORY(id_game, id_step, id_option, user_create, create_date)
+values(1,1,2,current_user(),current_time()),(1,3,4, current_user(),current_time()),(1,4,null,current_user(),current_time());
+
+insert into CHARACTER_ADVENTURE(id_character, id_adventure)
+values (1,1),(1,3),(2,2),(2,4),(3,2);
