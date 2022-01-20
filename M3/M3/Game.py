@@ -1,4 +1,5 @@
 import functions.Functions as fnc
+<<<<<<< HEAD
 opc = 5
 
 while opc != 4:
@@ -10,15 +11,34 @@ while opc != 4:
     opc = fnc.GetOpt(txt, opt, lista, exc)
     while opc == "1":
         LoginCheck = 0
+=======
+first_menu = True
+
+while first_menu:
+    fnc.gameTitle()
+    txt = "1)Login\n2)Create user\n3)Show adventures\n4)Exit"
+    opt = "\nChoose your Option:"
+    lista = ["1","2","3","4"]
+    exc = ["w", "e", "-1"]
+    opc = fnc.GetOpt(txt, opt, lista, exc)
+    LoginCheck = 0
+    if opc == "1":
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
         fnc.getHeader("Login")
         while LoginCheck != 1:
             user = input("Username: ")
             passwd = input("Password: ")
             LoginCheck = fnc.checkUserbdd(user,passwd)
+<<<<<<< HEAD
+=======
+            if LoginCheck == 1:
+                print("Login Correct")
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
             if LoginCheck == -1:
                 print("Incorrect Password")
             if LoginCheck == 0:
                 print("User not found")
+<<<<<<< HEAD
             if LoginCheck == 1:
                 print("Login Correct,", user)
                 input("Press Enter to start the game")
@@ -61,6 +81,8 @@ while opc != 4:
         break
 
 
+=======
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
     if opc =="2":
         fnc.getHeader("Create User")
         nombreUsuarioValido = False
@@ -74,5 +96,9 @@ while opc != 4:
         fnc.InsertUser(Username,Password)
     if opc =="3":
         fnc.getHeader("Show Adventures")
+<<<<<<< HEAD
     if opc == "4":
         break
+=======
+    break
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0

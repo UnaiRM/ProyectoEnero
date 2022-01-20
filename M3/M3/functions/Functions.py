@@ -1,5 +1,8 @@
 import pymysql
+<<<<<<< HEAD
 
+=======
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 #ESTABLECE CONEXION
 conn = pymysql.connect(host='52.178.107.50', user='xavi', password='12345678', db='BDDPROYECTOENERO')
 
@@ -17,6 +20,10 @@ def DictUsers():
             infoUsuario.append(item)
         users[id] = infoUsuario[1:]
     return users
+<<<<<<< HEAD
+=======
+    print(crearListaUsuarios())
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 
 
 #Diccionario personajes
@@ -34,6 +41,10 @@ def DictCharacters():
         characters[id] = infoCharacter[1:]
 
     return characters
+<<<<<<< HEAD
+=======
+    print(crearListaPersonajes())
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 
 
 
@@ -53,6 +64,32 @@ def DictAdventures():
 
     return adventures
 
+<<<<<<< HEAD
+=======
+    print(crearListaAventuras())
+
+
+
+#Diccionario Steps
+def DictSteps():
+    cur = conn.cursor()
+    query = 'select * from STEP'
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    steps = {}
+    for id in range(1,len(rows)+1):
+        infoStep = []
+        for item in rows[id-1]:
+            infoStep.append(item)
+        steps[id] = infoStep[1:]
+
+    return steps
+
+    print(crearListaSteps())
+
+
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 
 #Diccionario Options
 def DictOptions():
@@ -70,23 +107,43 @@ def DictOptions():
 
     return options
 
+<<<<<<< HEAD
 
 def InsertUser(user, password):
     cur = conn.cursor()
     sql = f"insert into USER (user_name, password, user_create, create_date) values('{user}','{password}', 'current_user()', current_time())"
+=======
+    print(crearListaOptions())
+
+def InsertUser(user, password):
+    cur = conn.cursor()
+    sql = f"insert into USER (user_name, password, user_create, create_date) values('{user}','{password}', 'current_user()', curdate())"
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 
     cur.execute(sql)
     conn.commit()
 
     print("Se ha creado correctamente el usuario: {} con password: {}".format(user, password))
+<<<<<<< HEAD
 
 def insertCurrentGame(idCharacter,idUser,idAdventure):
     cur = conn.cursor()
     sql = f"insert into GAME (id_character, id_user, id_adventure, user_create, create_date, date) values('{idCharacter}','{idUser}', '{idAdventure}',current_user(), current_time(), current_time())"
+=======
+    conn.close()
+
+def insertCurrentGame(idCharacter,idUser,idAdventure):
+    cur = conn.cursor()
+    sql = f"insert into GAME (id_character, id_user, id_adventure, user_create, create_date, date) values('{idCharacter}','{idUser}', '{idAdventure}',current_user(), curdate(), curdate())"
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
     cur.execute(sql)
     conn.commit()
 
     print("Se ha creado correctamente el Game en la base de datos")
+<<<<<<< HEAD
+=======
+    conn.close()
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 
 #FUNCIONES DICCIONARIOS
 
@@ -123,7 +180,11 @@ def get_characters():
     return characters
 
 #Diccionario Aventuras / get_adventures_with_chars()?
+<<<<<<< HEAD
 def get_adventures_with_chars(id_character):
+=======
+def get_adventures_with_chars():
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
     cur = conn.cursor()
     query = 'select * from ADVENTURE'
     cur.execute(query)
@@ -142,7 +203,11 @@ def get_adventures_with_chars(id_character):
 
 
 #Diccionario Steps
+<<<<<<< HEAD
 def DictSteps():
+=======
+def crearListaSteps():
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
     cur = conn.cursor()
     query = 'select * from STEP'
     cur.execute(query)
@@ -155,6 +220,10 @@ def DictSteps():
         steps[id] = infoStep
     return steps
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 #Diccionario Steps
 def crearListaHistorial():
     cur = conn.cursor()
@@ -182,10 +251,17 @@ def crearListaOptions():
         infoOption = []
         for item in rows[id-1]:
             infoOption.append(item)
+<<<<<<< HEAD
         options[id] = infoOption
 
     return options
 print(crearListaOptions())
+=======
+        options[id] = infoOption[1:]
+
+    return options
+
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 
 #Diccionario Games
 def crearListaGames():
@@ -206,7 +282,11 @@ def crearListaGames():
 
 def get_id_bystep_adventure(id_adventure):
     idAnswers_ByStep_Adventure = {}
+<<<<<<< HEAD
     pasos = DictSteps()
+=======
+    pasos = crearListaSteps()
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
     for step in range(1,len(pasos)+1):
         paso = pasos[step]
         if paso[1] == id_adventure:
@@ -229,8 +309,11 @@ def get_answers_bystep_adventure(id_adventure):
                 listaOpcionesEnAventura.append(listaDeOpciones[idOption])
     return listaOpcionesEnAventura
 
+<<<<<<< HEAD
 print(get_answers_bystep_adventure(1))
 
+=======
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 
 
 def get_first_step_adventure(id_adventure):
@@ -238,6 +321,10 @@ def get_first_step_adventure(id_adventure):
     primerPaso = pasos[1]
     return primerPaso
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
 def getChoices(id_relife):
     history = crearListaHistorial()
     partida = []
@@ -370,12 +457,19 @@ def gameTitle():
     print("             #    # #  ####    #    ####  #    # # #    #             ")
     print("**********************************************************************")
 
+<<<<<<< HEAD
 def GetOpt(textOpts,inputOptText="",rangeList=[],exceptions=[]):
     while True:
         print()
         for texto in textOpts:
             print(" ".rjust(31)+str(texto))
         opc = input(inputOptText)
+=======
+def GetOpt(textOpts="",inputOptText="",rangeList=[],exceptions=[]):
+    while True:
+        print(textOpts)
+        opc = (input(inputOptText))
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
         if opc not in rangeList and opc not in exceptions:
             print("*"*5,"Invalid Option","*"*5)
             input("Press enter to continue")
@@ -392,6 +486,7 @@ def checkUserbdd(user,password):
                 return -1
         else:
             return 0
+<<<<<<< HEAD
 def character_list():
     characters = get_characters()
     for character in characters:
@@ -459,3 +554,5 @@ print(getOptionsForStep(1))
 
 
 
+=======
+>>>>>>> b094fd17872c6aa3f40a759b7d4b6e176a98e1c0
