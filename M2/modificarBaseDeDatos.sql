@@ -71,7 +71,7 @@ foreign key(id_adventure)
 
 alter table BDDPROYECTOENERO.HISTORY modify id_history int primary key auto_increment not null unique;
 alter table BDDPROYECTOENERO.HISTORY modify id_game int not null;
-alter table BDDPROYECTOENERO.HISTORY modify id_option int;
+alter table BDDPROYECTOENERO.HISTORY modify id_option int not null;
 alter table BDDPROYECTOENERO.HISTORY modify id_step int not null;
 alter table BDDPROYECTOENERO.HISTORY modify create_date datetime not null;
 alter table BDDPROYECTOENERO.HISTORY modify user_create varchar(45) not null;
