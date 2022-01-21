@@ -487,3 +487,54 @@ def InsertLastHistory(gameId, stepId):
     cur.execute(sql)
     conn.commit()
     print("History correctly saved")
+
+
+def play(user):
+    print("Characters: ")
+    user_id = selectUserID(user)
+    character_list()
+    print("0) Go to menu")
+    chossed_character = input("Choose your Character ID: ")
+    characterIdList = character_ID_list()
+    while chossed_character not in characterIdList and chossed_character != "0":
+        print('Incorrect ID')
+        chossed_character = input("Choose your Character ID: ")
+    if chossed_character == "0":
+        opc = 5
+        return
+    getHeader(get_characters()[int(chossed_character)][0])
+    input("Press enter to continue")
+    print("Adventures: ")
+    adventuresForCharacter(int(chossed_character))
+    print("0) Go to menu")
+    chossed_adventure = input("Choose your adventure ID: ")
+    adventure_character_list = adventuresIdForCharacter(int(chossed_character))
+    while int(chossed_adventure) not in adventure_character_list and chossed_adventure != "0":
+        print('Incorrect ID')
+        chossed_character = input("Choose your adventure ID: ")
+    if chossed_adventure == "0":
+        opc = 5
+        return
+    insertCurrentGame(chossed_character, user_id, chossed_adventure)
+    pasoFinal = 0
+    id_adventure = int(chossed_adventure)
+    print(get_first_step_adventure(id_adventure)[3])
+    id_step = get_first_step_adventure(id_adventure)[0]
+    id_game = getIdGames()[len(getIdGames()) - 1]
+    while pasoFinal != 1:
+        listaIdOpciones = getOptionsForStep(id_step)
+        optionChoosed = input("Choose your option")
+        print("*" * 70)
+        while optionChoosed not in listaIdOpciones:
+            print("Incorrect option")
+            optionChoosed = input("Please choose your option again")
+        optionChoosed = int(optionChoosed)
+        InsertHistory(id_game, id_step, optionChoosed)
+        id_step = getNextStep(optionChoosed)
+        actualStep = DictSteps()[id_step][3]
+        print(actualStep)
+        pasoFinal = DictSteps()[id_step][2]
+    InsertLastHistory(id_game, id_step)
+    input("Press enter to continue")
+    endGame()
+    input("Press enter to continue")
