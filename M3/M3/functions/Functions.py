@@ -154,7 +154,7 @@ def DictSteps():
             infoStep.append(item)
         steps[id] = infoStep
     return steps
-
+print(DictSteps())
 #Diccionario Steps
 def crearListaHistorial():
     cur = conn.cursor()
@@ -452,10 +452,29 @@ def getOptionsForStep(id_step):
     for id_option in range(1, len(options)):
         if options[id_option][2] == id_step:
             print('{}) {}'.format(options[id_option][0], options[id_option][3]))
-            optionList.append(options[id_option][0])
+            optionList.append(str(options[id_option][0]))
     return optionList
 
 print(getOptionsForStep(1))
 
 
 
+def getNextStep(id_option):
+    options = crearListaOptions()
+    for id in range(1, len(options)+1):
+        if id_option == options[id][0]:
+            id_next_step = options[id][1]
+    return id_next_step
+
+print(getNextStep(3))
+
+
+def endGame():
+    print(' ********   **     ****     **')
+    print('/**/////   /**    /**/**   /**')
+    print('/**        /**    /**//**  /**')
+    print('/*******   /**    /** //** /**')
+    print('/**////    /**    /**  //**/**')
+    print('/**        /**    /**   //****')
+    print('/**        /**    /**    //***')
+    print('//         //     //      /// ')

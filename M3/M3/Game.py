@@ -42,20 +42,29 @@ while opc != 4:
                 while int(chossed_adventure) not in adventure_character_list and chossed_adventure != "0":
                     print('Incorrect ID')
                     chossed_character = input("Choose your adventure ID: ")
-                if chossed_character == "0":
+                if chossed_adventure == "0":
                     opc = 5
                     break
                 fnc.insertCurrentGame(chossed_character,user_id,chossed_adventure)
                 pasoFinal = 0
+                id_adventure = int(chossed_adventure)
+                print(fnc.get_first_step_adventure(id_adventure)[3])
+                id_step = fnc.get_first_step_adventure(id_adventure)[0]
                 while pasoFinal != 1:
-                    id_adventure = int(chossed_adventure)
-                    print(fnc.get_first_step_adventure(id_adventure)[3])
-                    id_step = fnc.get_first_step_adventure(id_adventure)
-                    options = fnc.get_answers_bystep_adventure(id_adventure)
-
+                    listaIdOpciones = fnc.getOptionsForStep(id_step)
                     optionChoosed = input("Choose your option")
-                    while optionChoosed not in optionList:
+                    while optionChoosed not in listaIdOpciones:
                         print("Incorrect option")
+                        optionChoosed = input("Please choose your option again")
+                    optionChoosed = int(optionChoosed)
+                    id_step = fnc.getNextStep(optionChoosed)
+                    actualStep = fnc.DictSteps()[id_step][3]
+                    print(actualStep)
+                    pasoFinal = fnc.DictSteps()[id_step][2]
+                fnc.endGame()
+                input("Press enter to continue")
+
+
 
 
         break
