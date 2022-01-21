@@ -73,11 +73,10 @@ def DictOptions():
 
 def InsertUser(user, password):
     cur = conn.cursor()
-    sql = f"insert into USER (user_name, password, user_create, create_date) values('{user}','{password}', 'current_user()', current_time())"
+    sql = f"insert into USER (user_name, password, user_create, create_date) values('{user}','{password}', current_user(), current_time())"
 
     cur.execute(sql)
     conn.commit()
-
     print("Se ha creado correctamente el usuario: {} con password: {}".format(user, password))
 
 def insertCurrentGame(idCharacter,idUser,idAdventure):
@@ -85,7 +84,6 @@ def insertCurrentGame(idCharacter,idUser,idAdventure):
     sql = f"insert into GAME (id_character, id_user, id_adventure, user_create, create_date, date) values('{idCharacter}','{idUser}', '{idAdventure}',current_user(), current_time(), current_time())"
     cur.execute(sql)
     conn.commit()
-
     print("Se ha creado correctamente el Game en la base de datos")
 
 #FUNCIONES DICCIONARIOS
@@ -154,7 +152,6 @@ def DictSteps():
             infoStep.append(item)
         steps[id] = infoStep
     return steps
-print(DictSteps())
 #Diccionario Steps
 def crearListaHistorial():
     cur = conn.cursor()
@@ -185,7 +182,6 @@ def crearListaOptions():
         options[id] = infoOption
 
     return options
-print(crearListaOptions())
 
 #Diccionario Games
 def crearListaGames():
@@ -199,7 +195,7 @@ def crearListaGames():
         infoGame = []
         for item in rows[id-1]:
             infoGame.append(item)
-        games[id] = infoGame[1:]
+        games[id] = infoGame
 
     return games
 
@@ -229,7 +225,6 @@ def get_answers_bystep_adventure(id_adventure):
                 listaOpcionesEnAventura.append(listaDeOpciones[idOption])
     return listaOpcionesEnAventura
 
-print(get_answers_bystep_adventure(1))
 
 
 
@@ -278,12 +273,14 @@ def nicknameList():
     for username in range(1,len(users)+1):
         listaNombreUsuarios.append(users[username][0])
     return listaNombreUsuarios
+
 def passwordList():
     passwords = DictUsers()
     listaPasswords = []
     for password in range(1, len(passwords) + 1):
         listaPasswords.append(passwords[password][1])
     return listaPasswords
+
 def userExists(user):
     listaNombreUsuarios = nicknameList()
     if user in listaNombreUsuarios:
@@ -392,6 +389,7 @@ def checkUserbdd(user,password):
                 return -1
         else:
             return 0
+
 def character_list():
     characters = get_characters()
     for character in characters:
@@ -455,9 +453,6 @@ def getOptionsForStep(id_step):
             optionList.append(str(options[id_option][0]))
     return optionList
 
-print(getOptionsForStep(1))
-
-
 
 def getNextStep(id_option):
     options = crearListaOptions()
@@ -465,8 +460,6 @@ def getNextStep(id_option):
         if id_option == options[id][0]:
             id_next_step = options[id][1]
     return id_next_step
-
-print(getNextStep(3))
 
 
 def endGame():
@@ -478,3 +471,19 @@ def endGame():
     print('/**        /**    /**   //****')
     print('/**        /**    /**    //***')
     print('//         //     //      /// ')
+
+
+def InsertHistory(gameId, stepId, optionId):
+    cur = conn.cursor()
+    sql = f"insert into BDDPROYECTOENERO.HISTORY (id_game, id_step, id_option, user_create, create_date) values('{gameId}','{stepId}', '{optionId}',current_user(), current_time())"
+    cur.execute(sql)
+    conn.commit()
+    print("History correctly saved")
+
+
+def InsertLastHistory(gameId, stepId):
+    cur = conn.cursor()
+    sql = f"insert into BDDPROYECTOENERO.HISTORY (id_game, id_step, user_create, create_date) values('{gameId}','{stepId}',current_user(), current_time())"
+    cur.execute(sql)
+    conn.commit()
+    print("History correctly saved")
