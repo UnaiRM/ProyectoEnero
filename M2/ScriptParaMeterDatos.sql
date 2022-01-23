@@ -17,7 +17,7 @@ values ('Freezer Vuelve a atacar(version corta de la pelea)','Freezer decide vol
 insert into STEP(id_adventure, final_step, description, user_create, create_date)
 values  (1,0, 'Al parecer freezer es un resentido y vuelve a la vida para destruir el planeta tierra!!! Que haras?', current_user(), current_time()),
 		(1,1, 'Has querido ser amable con el y pedirle porfavor que se vaya, parece ser que el no ha sido tan amable, has muerto :c', current_user(), current_time()),
-        (1,0, 'Has decidido pelear con el, pero parece que tu ferza de ahora no es suficiente, que haces?', current_user(), current_time()),
+        (1,0, 'Has decidido pelear con el, pero parece que tu fuerza de ahora no es suficiente, que haces?', current_user(), current_time()),
         (1,1, 'Decides convertirte en super sayan2, pero parece que sigue siendo insuficiente y freezer te mata...', current_user(), current_time()),
         (1,1, 'Decides llamar a Saitama tu querido amigo, el se hace cargo del asunto y os vais a hechar unas partidas a la consola', current_user(), current_time()),
         (2,0, 'La alarma te despierta, que deberias hacer?', current_user(),current_time()),
@@ -50,7 +50,7 @@ values  (2,1,'Intentar ser amable para que se vaya sin pelear', 'Le dices amable
         (5,3,'Llamar a tu amigo Saitama', 'Hoy no te apetece pelear, y decides llamar a Saitama',current_user(),current_time()),
         (7,6,'Pausar la alarma para dormir un poco mas', 'Por un rato que duerma mas no pasara nada...',current_user(),current_time()),
         (8,7,'Apagar la alarma, a dormir se ha dicho!', 'No te apetece salir a por la princesa hoy, que ayer curraste mucho',current_user(),current_time()),
-        (9,6,'Sair de la cama', 'Por mucho sueño que tengas debes salvar a tu princesa!',current_user(),current_time()),
+        (9,6,'Salir de la cama', 'Por mucho sueño que tengas debes salvar a tu princesa!',current_user(),current_time()),
         (10,9,'No ir a por la princesa', 'Aunque te hayas levantado decides no ir hacia ella, ya encontraras a otra persona',current_user(),current_time()),
         (11,9,'Equiparte apropiadamente y salir a la aventura', 'Coges algo de quipamiento (Armadura, espada y unas pociones',current_user(),current_time()),
         (12,9,'No equiparse ya que es demasiado fuerte, no tendra problemas', 'Sale por la puerta con el pijama puesto y todo',current_user(),current_time()),
@@ -73,7 +73,9 @@ insert into GAME(id_character, id_user, id_adventure, user_create, create_date, 
 values(1,1,1,current_user(),current_time(),current_time()),(2,1,2,current_user(),current_time(),current_time());
 
 insert into BDDPROYECTOENERO.HISTORY(id_game, id_step, id_option, user_create, create_date)
-values(1,1,2,current_user(),current_time()),(1,3,4, current_user(),current_time()),(1,4,null,current_user(),current_time());
+values(1,1,2,current_user(),current_time()),(1,3,4, current_user(),current_time()),(1,5,null,current_user(),current_time()), (2,6,7,current_user(),current_time()),(2,9,11, current_user(),current_time()),(2,13,null,current_user(),current_time());
 
 insert into CHARACTER_ADVENTURE(id_character, id_adventure)
 values (1,1),(1,3),(2,2),(2,4),(3,2);
+
+
