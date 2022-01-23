@@ -1,7 +1,6 @@
 import pymysql
-
 #ESTABLECE CONEXION
-conn = pymysql.connect(host='52.178.107.50', user='xavi', password='12345678', db='BDDPROYECTOENERO')
+conn = pymysql.connect(host='localhost', user='Unai', password='UnayDog37', db='BDDPROYECTOENERO')
 
 #Diccionario Usuarios
 def DictUsers():
@@ -84,7 +83,6 @@ def insertCurrentGame(idCharacter,idUser,idAdventure):
     sql = f"insert into GAME (id_character, id_user, id_adventure, user_create, create_date, date) values('{idCharacter}','{idUser}', '{idAdventure}',current_user(), current_time(), current_time())"
     cur.execute(sql)
     conn.commit()
-    print("Se ha creado correctamente el Game en la base de datos")
 
 #FUNCIONES DICCIONARIOS
 
@@ -263,9 +261,9 @@ def getUsers():
 
 def getHeader(texto):
     print("")
-    print('*'*70)
-    print(str(texto).center(70,'='))
-    print('*'*70)
+    print('*'*119)
+    print(str(texto).center(119,'='))
+    print('*'*119)
 
 def nicknameList():
     users = DictUsers()
@@ -371,7 +369,7 @@ def GetOpt(textOpts,inputOptText="",rangeList=[],exceptions=[]):
     while True:
         print()
         for texto in textOpts:
-            print(" ".rjust(31)+str(texto))
+            print(" ".rjust(28)+str(texto))
         opc = input(inputOptText)
         if opc not in rangeList and opc not in exceptions:
             print("*"*5,"Invalid Option","*"*5)
@@ -393,7 +391,7 @@ def checkUserbdd(user,password):
 def character_list():
     characters = get_characters()
     for character in characters:
-        print("{}) {}".format(character,characters[character][0]))
+        print(" ".rjust(28) + "{}) {}".format(character,characters[character][0]))
 
 
 def character_ID_list():
@@ -409,7 +407,6 @@ def Dict_Char_Adv():
     query = 'select * from CHARACTER_ADVENTURE'
     cur.execute(query)
     rows = cur.fetchall()
-
     characterInAdventure = {}
     for id in range(1,len(rows)+1):
         infoCharInAdv = []
@@ -418,22 +415,21 @@ def Dict_Char_Adv():
         characterInAdventure[id] = infoCharInAdv
     return characterInAdventure
 
-
-def adventuresForCharacter(id_character):
+def adventuresForCharacter(adventures):
     aventuras = DictAdventures()
-    aventurasParaCaracter = Dict_Char_Adv()
-    for item in range(1,len(aventurasParaCaracter)+1):
-        if id_character == aventurasParaCaracter[item][0]:
-            print('{}) {}'.format(aventurasParaCaracter[item][1],aventuras[aventurasParaCaracter[item][1]][0]))
+    aventurasParaCaracter = {}
+    for i in range(len(aventuras)+1):
+        if i in adventures:
+            aventurasParaCaracter[i] = aventuras[i]
+    return aventurasParaCaracter
 
 def adventuresIdForCharacter(id_character):
     aventurasParaCaracter = Dict_Char_Adv()
     listaAventuras = []
-    for item in range(1, len(aventurasParaCaracter) + 1):
+    for item in range(1, len(aventurasParaCaracter)+1):
         if id_character == aventurasParaCaracter[item][0]:
             listaAventuras.append(aventurasParaCaracter[item][1])
     return listaAventuras
-
 
 def selectUserID(username):
     usuarios = DictUsers()
@@ -449,7 +445,8 @@ def getOptionsForStep(id_step):
     optionList = []
     for id_option in range(1, len(options)):
         if options[id_option][2] == id_step:
-            print('{}) {}'.format(options[id_option][0], options[id_option][3]))
+            print("{}) {}".format(options[id_option][0], options[id_option][3]))
+            print()
             optionList.append(str(options[id_option][0]))
     return optionList
 
@@ -478,7 +475,14 @@ def InsertHistory(gameId, stepId, optionId):
     sql = f"insert into BDDPROYECTOENERO.HISTORY (id_game, id_step, id_option, user_create, create_date) values('{gameId}','{stepId}', '{optionId}',current_user(), current_time())"
     cur.execute(sql)
     conn.commit()
-    print("History correctly saved")
+
+def getFormatedAdventure(adventures):
+    print("Adventures".center(200, "="))
+    print("")
+    print("IdAdventure", "Adventure".rjust(10), "Description".rjust(55))
+    print("".center(200, "*"))
+    for i in adventures:
+        print(str(i).ljust(13), str(adventures[i][0]).ljust(53), adventures[i][1])
 
 
 def InsertLastHistory(gameId, stepId):
@@ -486,14 +490,13 @@ def InsertLastHistory(gameId, stepId):
     sql = f"insert into BDDPROYECTOENERO.HISTORY (id_game, id_step, user_create, create_date) values('{gameId}','{stepId}',current_user(), current_time())"
     cur.execute(sql)
     conn.commit()
-    print("History correctly saved")
 
 
 def play(user):
     print("Characters: ")
     user_id = selectUserID(user)
     character_list()
-    print("0) Go to menu")
+    print(" ".rjust(28) + "0) Go to menu")
     chossed_character = input("Choose your Character ID: ")
     characterIdList = character_ID_list()
     while chossed_character not in characterIdList and chossed_character != "0":
@@ -505,10 +508,10 @@ def play(user):
     getHeader(get_characters()[int(chossed_character)][0])
     input("Press enter to continue")
     print("Adventures: ")
-    adventuresForCharacter(int(chossed_character))
-    print("0) Go to menu")
-    chossed_adventure = input("Choose your adventure ID: ")
     adventure_character_list = adventuresIdForCharacter(int(chossed_character))
+    getFormatedAdventure(adventuresForCharacter(adventure_character_list))
+    print("0".ljust(14)+"Go to menu")
+    chossed_adventure = input("Choose your adventure ID: ")
     while int(chossed_adventure) not in adventure_character_list and chossed_adventure != "0":
         print('Incorrect ID')
         chossed_character = input("Choose your adventure ID: ")
@@ -521,6 +524,7 @@ def play(user):
     print(get_first_step_adventure(id_adventure)[3])
     id_step = get_first_step_adventure(id_adventure)[0]
     id_game = getIdGames()[len(getIdGames()) - 1]
+    options = crearListaOptions()
     while pasoFinal != 1:
         listaIdOpciones = getOptionsForStep(id_step)
         optionChoosed = input("Choose your option")
@@ -529,6 +533,8 @@ def play(user):
             print("Incorrect option")
             optionChoosed = input("Please choose your option again")
         optionChoosed = int(optionChoosed)
+        print(options[optionChoosed][3])
+        print()
         InsertHistory(id_game, id_step, optionChoosed)
         id_step = getNextStep(optionChoosed)
         actualStep = DictSteps()[id_step][3]
@@ -538,3 +544,55 @@ def play(user):
     input("Press enter to continue")
     endGame()
     input("Press enter to continue")
+
+def getHistoryByGame(id_game):
+    historial = crearListaHistorial()
+    historia = []
+    for i in range(1,len(historial)):
+        if historial[i][1] == id_game:
+            historia.append(historial[i])
+    return historia
+
+
+def replay():
+    games = crearListaGames()
+    id_games = getIdGames()
+    users = crearListaUsuarios()
+    adventures = DictAdventures()
+    characters = DictCharacters()
+    steps = DictSteps()
+    options = DictOptions()
+    print("="*119)
+    print("Id".ljust(10) + "Username".ljust(15) + "Name".ljust(55) + "CharacterName".ljust(20)+"Date".ljust(25))
+    print("*" * 119)
+    for game in range(len(games),0,-1):
+        print("{})".format(game).ljust(10) + "{}".format(users[games[game][2]][0]).ljust(15) + "{}".format(adventures[games[game][3]][0]).ljust(55) + "{}".format(characters[games[game][1]][0]).ljust(20) + "{}".format(games[game][6]))
+    print()
+    print("0)".ljust(10) + "Go back")
+    gameChoosed = input("Choose a game by id")
+    while int(gameChoosed) not in id_games and gameChoosed != "0":
+        print("Invalid id, please enter a valid id")
+        gameChoosed = input("Choose a game by id")
+    if gameChoosed == "0":
+        return
+    else:
+        getHeader(adventures[games[int(gameChoosed)][3]][0])
+        historial = getHistoryByGame(int(gameChoosed))
+        print(historial)
+        for i in range(len(historial)):
+            input("Press enter to continue")
+            print(steps[historial[i][2]][3])
+            if steps[historial[i][2]][2] == 1:
+                break
+            print()
+            getOptionsForStep(historial[i][2])
+            input("Press enter to continue")
+            print("You have been selected number {}".format(historial[i][3]))
+            print(options[historial[i][3]][2])
+            print()
+            print(options[historial[i][3]][3])
+        endGame()
+
+
+
+

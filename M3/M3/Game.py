@@ -13,7 +13,7 @@ while opc != 4:
         fnc.gameTitle()
         txt = ("1)Log Out", "2)Create user", "3)Replay adventures", "4)Play", "5)Exit")
         opt = "\nChoose your Option:"
-        lista = ["1", "2", "3", "4"]
+        lista = ["1", "2", "3", "4","5"]
         exc = []
         opc = fnc.GetOpt(txt, opt, lista, exc)
         if opc == "1":
@@ -22,6 +22,8 @@ while opc != 4:
         if opc == "4":
             fnc.play(user)
             opc = 0
+        if opc == "5":
+            opc = "4"
     while opc == "1":
         LoginCheck = 0
         fnc.getHeader("Login")
@@ -54,6 +56,8 @@ while opc != 4:
         fnc.InsertUser(Username,Password)
     if opc =="3":
         fnc.getHeader("Show Adventures")
+        fnc.replay()
     if opc == "4":
+        print("You have successfully exited the game!")
         break
 

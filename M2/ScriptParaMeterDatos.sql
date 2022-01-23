@@ -73,7 +73,9 @@ insert into GAME(id_character, id_user, id_adventure, user_create, create_date, 
 values(1,1,1,current_user(),current_time(),current_time()),(2,1,2,current_user(),current_time(),current_time());
 
 insert into BDDPROYECTOENERO.HISTORY(id_game, id_step, id_option, user_create, create_date)
-values(1,1,2,current_user(),current_time()),(1,3,4, current_user(),current_time()),(1,4,null,current_user(),current_time());
+values(1,1,2,current_user(),current_time()),(1,3,4, current_user(),current_time()),(1,5,null,current_user(),current_time()), (2,6,7,current_user(),current_time()),(2,9,11, current_user(),current_time()),(2,13,null,current_user(),current_time());
 
 insert into CHARACTER_ADVENTURE(id_character, id_adventure)
 values (1,1),(1,3),(2,2),(2,4),(3,2);
+
+
